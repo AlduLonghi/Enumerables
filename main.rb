@@ -10,11 +10,14 @@ module Enumerable
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
-
-    0.upto(length - 1) do |i|
-      yield self[i], i
+    self.instance_of?(Range) ? new_self = self.to_a : new_self = self
+    
+    0.upto(new_self.length - 1) do |i|
+      yield new_self[i], i
     end
-  end
+    self
+    end
+    
 
   def my_select
     return to_enum(:my_select) unless block_given?
