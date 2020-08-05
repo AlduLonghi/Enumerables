@@ -13,6 +13,9 @@ describe Enumerable do
   let(:my_boolean_block) { proc {|x| x < 5} }
   let(:my_hash_block) { proc {|x, y| x < 'c'}}
   let(:my_class_block) {proc {|x| x.is_a?(String) }}
+  let(:my_inject_block) { proc {|x, y| x + y }}
+  let(:my_inject_string_block) { proc {|memo, word| memo.length > word.length ? memo : word}}
+
 
   
 
@@ -173,7 +176,6 @@ describe Enumerable do
     expect(array.my_count).to eql(array.count)
   end
 
-
   it 'return same as count method (String)' do
     expect { my_string.my_count }.to raise_error(NoMethodError)
   end
@@ -208,5 +210,26 @@ end
     expect { my_string.my_map }.to raise_error(NoMethodError)
   end
 end
-    
+
+describe '#my_inject' do
+  it 'return the same as inject method (block given)' do
+    expect(range.my_inject(&my_inject_block)).to eql(range.inject(&my_inject_block))
+  end
+
+  it 'return the same as inject method (symbol as argument)' do
+    expect(range.my_inject(:+)).to eql(range.inject(:+))
+  end
+
+  it 'return the same as inject method (integer as argument and block given)' do
+    expect(range.my_inject(2, &my_inject_block)).to eql(range.inject(2, &my_inject_block))
+  end
+
+  it 'return the same as inject method (string array)' do 
+    expect(string_array.my_inject(&my_inject_string_block)).to eql(string_array.inject(&my_inject_string_block))
+  end
+
+  it 'return the same as inject method (String)' do
+    expect { my_string.my_inject }.to raise_error(NoMethodError)
+  end
+end
 end
