@@ -129,4 +129,62 @@ describe Enumerable do
       expect(my_hash.my_any?(&my_hash_block)).to eql(my_hash.any?(&my_hash_block))
     end
   end
+
+  describe '#my_none?' do
+    it 'return same as none? method (integer array)' do
+      expect(array.my_none?(&my_boolean_block)).to eql(array.none?(&my_boolean_block))
+    end
+
+    it 'return same as none? method (Range)' do
+      expect(range.my_none?(&my_boolean_block)).to eql(range.none?(&my_boolean_block))
+    end
+
+    it 'return same as none? method (String)' do
+      expect { my_string.my_none? }.to raise_error(NoMethodError)
+    end
+
+    it 'return same as none? method (String_array)' do
+      expect(string_array.my_none?(&my_hash_block)).to eql(string_array.none?(&my_hash_block))
+    end
+
+    it 'return same as none? method (no_block_pass)' do
+      expect(array.my_none?).to eql(false)
+    end
+
+    it 'return same as none? method (hash)' do
+      expect(my_hash.my_none?(&my_hash_block)).to eql(my_hash.none?(&my_hash_block))
+    end
+  end 
+
+  describe '#my_count' do
+  it 'return same as count method (integer array, block given)' do
+    expect(array.my_count(&my_boolean_block)).to eql(array.count(&my_boolean_block))
+  end
+
+  it 'return same as count method (integer array, argument given)' do
+    expect(array.my_count(2)).to eql(array.count(2))
+  end
+
+  it 'return same as count method (integer array, argument given)' do
+    expect(array.my_count(2, &my_boolean_block)).to eql(array.count(2, &my_boolean_block))
+  end
+
+  it 'return same as count method (integer array)' do
+    expect(array.my_count).to eql(array.count)
+  end
+
+
+  it 'return same as count method (String)' do
+    expect { my_string.my_count }.to raise_error(NoMethodError)
+  end
+
+  it 'return same as count method (Range)' do
+    expect(range.my_count(&my_boolean_block)).to eql(range.count(&my_boolean_block))
+  end
+
+  it 'return same as count method (hash)' do
+    expect(my_hash.my_count(&my_hash_block)).to eql(my_hash.count(&my_hash_block))
+  end
+
+end
 end
