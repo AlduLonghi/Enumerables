@@ -1,7 +1,7 @@
 # Enumerables_Ruby
 
-![screenshot](Screenshot.PNG)
-This project uses our methods for Enumerables in Ruby.The methods created are:
+![screenshot](rspec-screenshot.jpg)
+This project uses our methods for Enumerables in Ruby and test them using rspec.The methods created are:
 
 - #my_each
 - #my_each_with_index
@@ -17,27 +17,61 @@ This project uses our methods for Enumerables in Ruby.The methods created are:
 
 - RUBY
 
+**Tested with**
+
+- Rspec
+
+**Lintered with**
+
+- Rubocop
+
 ## Getting Started
+
+**Prerequisites**
+
+-Having [Ruby](https://www.ruby-lang.org/en/) installed in your machine.
+
+### In case you have Rspec installed
 
 To get a local copy of the repository please run the following commands on your terminal:
 
-- git clone https://github.com/Abidoyinsola1/Enumerables.git
+- $ git clone https://github.com/AlduLonghi/Enumerables
 - cd into above cloned directory
-- run ruby enumerable.rb
-- you can use your test codes to test the methods
+- go to spec/enumerables_spec.rb
+- run $ rspec
+- check the output
+
+### In case you don't have Rspec installed
+
+- Open your terminal and run $ gem install rspec
+
+Follow these steps: 
+
+- $ git clone https://github.com/AlduLonghi/Enumerables
+- cd into above cloned directory
+- go to spec/enumerables_spec.rb
+- run $ rspec
+- check the output
+
 
 ## Authors
 
-**Adeyemi Abiola Doyinsola**
+👤 **Aldana**
+​
 
-- Github: [@Abidoyinsola1](https://github.com/Abidoyinsola1)
-- Twitter: [@Abidoyinsola](https://twitter.com/abidoyinsola)
-- LinkedIn: [Doyinsola Abiola Adeyemi](https://www.linkedin.com/in/doyinsola-adeyemi)
+- Github: [@AlduLonghi](https://github.com/AlduLonghi)
 
-**Razika**
+- Twitter: [@AbrilLonghi](https://twitter.com/AbrilLonghi)
+
+- Linkedin: [Aldana Abril Longhi](https://www.linkedin.com/in/aldana-abril-longhi-a842ba1a7/)
+
+
+👤 **Razika**
 
 - Github: [@rahalrazika](https://github.com/rahalrazika)
+
 - Linkedin : [Razika Rahal](https://www.linkedin.com/in/razika-rahal-85539bbb/)
+
 - Twitter: [@RereRere055](https://twitter.com/RereRere055)
 
 ## Contributing
