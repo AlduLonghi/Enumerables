@@ -12,6 +12,9 @@ describe Enumerable do
   let(:my_puts_block) { proc { |x, y| p x, y } }
   let(:my_boolean_block) { proc {|x| x < 5} }
   let(:my_hash_block) { proc {|x, y| x < 'c'}}
+  let(:my_class_block) {proc {|x| x.is_a?(String) }}
+
+  
 
   describe '#my_each' do
     it 'return same as each method (array)' do
@@ -71,7 +74,7 @@ describe Enumerable do
     end
 
     it 'return same as select method (string)' do
-      expect { my_string.my_select }.to raise_error
+      expect { my_string.my_select }.to raise_error(NoMethodError)
     end
   end
 
@@ -84,7 +87,46 @@ describe Enumerable do
       expect(range.my_all?(&my_boolean_block)).to eql(range.all?(&my_boolean_block))
     end
     
+    it 'return same as all? method (String)' do
+      expect { my_string.my_all? }.to raise_error(NoMethodError)
+    end
+    
+    it 'return same as all? method (String_array)' do
+      expect(string_array.my_all?(&my_hash_block)).to eql(string_array.all?(&my_hash_block))
+    end
+       
+    it 'return same as all? method (no_block_pass)' do
+      expect(array.my_all?).to eql(true)
+    end
 
+    it 'return same as all? method (hash)' do
+      expect(my_hash.my_all?(&my_hash_block)).to eql(my_hash.all?(&my_hash_block))
+    end
+  end
+   
+  describe '#my_any?' do
+    it 'return same as any? method (integer array)' do
+      expect(array.my_any?(&my_boolean_block)).to eql(array.any?(&my_boolean_block))
+    end
 
+    it 'return same as any? method (Range)' do
+      expect(range.my_any?(&my_boolean_block)).to eql(range.any?(&my_boolean_block))
+    end
+    
+    it 'return same as any? method (String)' do
+      expect { my_string.my_any? }.to raise_error(NoMethodError)
+    end
+    
+    it 'return same as any? method (String_array)' do
+      expect(string_array.my_any?(&my_hash_block)).to eql(string_array.any?(&my_hash_block))
+    end
+       
+    it 'return same as any? method (no_block_pass)' do
+      expect(array.my_any?).to eql(true)
+    end
+
+    it 'return same as any? method (hash)' do
+      expect(my_hash.my_any?(&my_hash_block)).to eql(my_hash.any?(&my_hash_block))
+    end
   end
 end
