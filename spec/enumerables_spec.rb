@@ -185,6 +185,28 @@ describe Enumerable do
   it 'return same as count method (hash)' do
     expect(my_hash.my_count(&my_hash_block)).to eql(my_hash.count(&my_hash_block))
   end
-
 end
+
+  describe '#my_map' do
+  it 'return same as map method (array)' do
+    expect(array.my_map(&my_sum_block)).to eql(array.map(&my_sum_block))
+  end
+
+  it 'return same as map method (hash)' do
+    expect(my_hash.my_map(&my_sum_block)).to eql(my_hash.map(&my_sum_block))
+  end
+
+  it 'return same as map method (range)' do
+    expect(range.my_map(&my_sum_block)).to eql(range.map(&my_sum_block))
+  end
+
+  it 'return enumerator when no block is passed' do
+    expect(array.my_map).to be_a(Enumerator)
+  end
+
+  it 'return same as map method (string)' do
+    expect { my_string.my_map }.to raise_error(NoMethodError)
+  end
+end
+    
 end
