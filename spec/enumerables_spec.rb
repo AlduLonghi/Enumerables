@@ -31,7 +31,7 @@ describe Enumerable do
     end
 
     it 'return same as each method (string)' do
-      expect { my_string.my_each }.to raise_error
+      expect { my_string.my_each }.to raise_error(NoMethodError)
     end
   end
 
@@ -53,7 +53,7 @@ describe Enumerable do
     end
 
     it 'return same as each-with_index method (string)' do
-      expect { my_string.my_each_with_index }.to raise_error
+      expect { my_string.my_each_with_index }.to raise_error(NoMethodError)
     end
   end
 
@@ -71,8 +71,20 @@ describe Enumerable do
     end
 
     it 'return same as select method (string)' do
-      expect { my_string.my_each_with_index }.to raise_error
+      expect { my_string.my_select }.to raise_error
     end
+  end
+
+  describe '#my_all?' do
+    it 'return same as all? method (integer array)' do
+      expect(array.my_all?(&my_boolean_block)).to eql(array.all?(&my_boolean_block))
+    end
+
+    it 'return same as all? method (Range)' do
+      expect(range.my_all?(&my_boolean_block)).to eql(range.all?(&my_boolean_block))
+    end
+    
+
 
   end
 end

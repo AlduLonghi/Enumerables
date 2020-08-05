@@ -9,15 +9,25 @@ module Enumerable
   end
 
   def my_each_with_index
-    return to_enum(:my_each_with_index) unless block_given?
-    self.instance_of?(Range) ? new_self = self.to_a : new_self = self
-    
-    0.upto(new_self.length - 1) do |i|
-      yield new_self[i], i
+    return enum_for(:my_each_with_index) unless block_given?
+
+    new_self = self
+    i = 0
+    a = 0
+    new_self = new_self.instance_of?(Array) || new_self.instance_of?(Hash) ? flatten : to_a
+    if instance_of?(Hash)
+      while i < new_self.length / 2
+        yield(new_self.slice(a, 2), i)
+        i += 1
+        a += 2
+      end
+    elsif new_self.length.times do
+            yield(new_self[i], i)
+            i += 1
+          end
     end
     self
-    end
-    
+  end
 
   def my_select
     return to_enum(:my_select) unless block_given?
