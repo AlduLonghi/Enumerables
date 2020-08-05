@@ -130,6 +130,3 @@ end
 def multiply_els(arr)
   arr.my_inject(1) { |val, i| val * i }
 end
-
-
-
